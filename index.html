@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>@RuanCamello - Página inicial</title>
-    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <script type="module" type="text/javascript" src="index.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -14,24 +15,22 @@
             @RuanCamello - Página inicial
         </h1>
     </header>
-    <nav>
+    <nav class="row">
         <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="sobremim.html">Sobre mim</a></li>
-            <li><a href="curriculo.html">Profissional</a></li>
-            <li><a href="selecionar.html">Aplicativos</a></li>
+            <li class="col-3"><a href="index.html">Inicio</a></li>
+            <li class="col-3"><a href="sobremim.html">Sobre mim</a></li>
+            <li class="col-3"><a href="curriculo.html">Profissional</a></li>
+            <li class="col-3"><a href="selecionar.html">Aplicativos</a></li>
         </ul>
     </nav>
     <article>
-        <div id="mestre">
-            <div id="quadro">
-                <div id="alvo">
-                    @
-                </div>
-            </div>
+        <div id="mestre" class="row">
+            <div id="esquerda" class="col-3"></div>
+            <div id="quadro" class="col-6"></div>
+            <div id="alvo" class="col-3"></div>
         </div>
     </article>
-    <footer>
+    <footer class="col-12">
         Todos os direitos reservados.
     </footer>
 </body>
