@@ -66,14 +66,25 @@ header, nav {
     background-color: lightgray;
 }
 
-#quadro {
-    background-color: gray;
-    height: 500px;
+nav li {
+    display: inline;
     text-align: center;
+    border-radius: 15px 15px 0px 0px;
+}
+
+nav li a {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+nav li a:hover {
+    text-transform: uppercase;
 }
 
 #mestre {
-    height: 100%;
+    padding: 15px;
     background: white;
     display: flex;
     flex-direction: row;
@@ -81,16 +92,27 @@ header, nav {
     align-items: center;
 }
 
+#quadro {
+    background-color: gray;
+    padding: 15px;
+    text-align: center;
+}
+
 footer {
     background-color: gray;
     color: white;
-    font: 10px;
-    text-align: right;
-    height: 70px;
+    padding: 15PX;
     border: 1px solid #000000;
 }
-
-nav li {
-    display: inline;
-    text-align: center;
+footer li a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+footer li a:visited {
+    color: white;
+}
+footer li img {
+    float: right;
 }

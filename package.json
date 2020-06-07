@@ -1,0 +1,30 @@
+{
+  "name": "paginapessoal",
+  "version": "0.0.1",
+  "description": "Meu blog pessoal para publicar meus avanços na área de desenvolvimento de software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decimo3/paginaPessoal.git"
+  },
+  "keywords": [
+    "Blog",
+    "RuanCamello"
+  ],
+  "author": "RuanCamello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/decimo3/paginaPessoal/issues"
+  },
+  "homepage": "https://github.com/decimo3/paginaPessoal#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
