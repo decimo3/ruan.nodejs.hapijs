@@ -1,9 +1,9 @@
 function onload() {
     const express = require("express")
     const server = express()
-    server.listen(3001, () => console.log("Servidor iniciou na porta 3001!"))
+    server.listen(5500, () => console.log("Servidor iniciou na porta 5500!"))
     function helloword(req, res) {
-      res.redirect('./index.html')
+      res.send('Olá mundo!')
     }
     function retornoEcho(req, res) {
       res.send("resposta")
