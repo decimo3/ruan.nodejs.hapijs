@@ -1,7 +1,9 @@
 function onload() {
     const express = require("express")
+    const cors = require("cors")
     const server = express()
-    server.listen(5500, () => console.log("Servidor iniciou na porta 5500!"))
+    server.use(cors())
+    server.listen(3001, () => console.log("Servidor iniciou na porta 5500!"))
     function helloword(req, res) {
       res.send('Olá mundo!')
     }
