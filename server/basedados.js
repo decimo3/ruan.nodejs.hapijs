@@ -1,11 +1,15 @@
-function lerbanco () {
+function olaMundo () {
   return 'Olá mundo'
 }
-function meunome () {
+function nomeCompleto () {
   return 'Ruan Faustino Camello Da Silva'
+}
+function nome (nome) {
+  return `olá ${nome}!`
 }
 
 module.exports = {
-  lerbanco,
-  meunome,
+  olaMundo,
+  nomeCompleto,
+  nome,
 }
