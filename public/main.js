@@ -13,7 +13,7 @@ function paginaPrincipal () {
         .catch((err)=>{console.log(err)})
 }
 function imprimeResultado (log) {
-    for (let index = 0; index < log.length; index++) {
+    for (let index = log.length -1; index >= 0; index--) {
         let x = window.document.getElementById("quadro")
         let a = window.document.createElement("div")
         let b = window.document.createElement("div")
