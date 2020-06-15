@@ -85,7 +85,6 @@ nav li a:hover {
 
 #mestre {
     padding: 15px;
-    background: white;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -93,7 +92,6 @@ nav li a:hover {
 }
 
 #quadro {
-    background-color: gray;
     padding: 15px;
     text-align: center;
 }
