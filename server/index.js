@@ -7,11 +7,12 @@ const init = async () => {
   await server.register({
     plugin: require('hapi-cors'),
     options: {
-      origins: ['http://localhost:5500']
+      origins: ['*']
     }
   })
   await server.start()
     console.log(`Server running at: ${server.info.uri}`)
+    console.log(`Pressione ctrl + C para finalizar o servidor!`)
 } // Fim da declaração da função init
 process.on('unhandledRejection', (err) => {
   console.log(err)

@@ -5,6 +5,7 @@ var estruturaDB = new mongoose.Schema({
   nome: String,
   titulo: String,
   depoimento: String,
+  dataHora: Date,
 })
 
 var postagem = mongoose.model('postagem', estruturaDB);
@@ -15,7 +16,8 @@ async function listar () {
 }
 async function criar (nome="Nome de teste", titulo="Titulo de teste", depoimento="Depoimento de teste") {
   console.log("Salvando no banco...")
-  return await postagem.create({nome, titulo, depoimento})
+  let dataHora = Date.now()
+  return await postagem.create({nome, titulo, depoimento, dataHora})
 }
 
 module.exports = {
