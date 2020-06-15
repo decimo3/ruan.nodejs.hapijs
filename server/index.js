@@ -1,16 +1,15 @@
 const Hapi = require('@hapi/hapi')
 const routes = require("./routes")
-const inert = require('inert')
 
 const init = async () => {
   const server = new Hapi.Server({port: 3000, host: 'localhost'})
-  /* server.register(inert, (err) => {
-
-    if (err) {
-        throw err
-    }
-  })*/
   server.route(routes)
+  await server.register({
+    plugin: require('hapi-cors'),
+    options: {
+      origins: ['http://localhost:5500']
+    }
+  })
   await server.start()
     console.log(`Server running at: ${server.info.uri}`)
 } // Fim da declaração da função init
