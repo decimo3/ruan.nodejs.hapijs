@@ -10,5 +10,15 @@ module.exports = [
     method: 'POST',
     path: '/api/v1/publicacao',
     handler: handles.criarPublicação
-  }
+  },
+  {
+    method: 'GET',
+    path: '/api/v1/usuarios',
+    handler: handles.listarUsuarios
+  },
+  {
+    method: 'POST',
+    path: '/api/v1/usuarios',
+    handler: handles.listarUsuarios
+  },
 ]

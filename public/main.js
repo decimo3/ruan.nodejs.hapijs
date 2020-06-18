@@ -7,7 +7,7 @@ function paginaPrincipal () {
                 imprimeResultado(json)
             })
             .catch((err)=>{
-                console.log(err)
+                console.warn(err)
             })
         })
         .catch((err)=>{console.log(err)})
@@ -21,10 +21,6 @@ function imprimeResultado (log) {
         b.setAttribute("name", "corpoDepoimento")
         a.setAttribute("class", "barraTitulo")
         b.setAttribute("class", "corpoDepoimento")
-        a.style.border = "1px solid black"
-        b.style.border = "1px solid black"
-        a.style.padding = "15px"
-        b.style.padding = "15px"
         a.innerText = `Titulo: ${log[index].titulo} por ${log[index].nome}`
         b.innerText = `${log[index].depoimento}`
         x.appendChild(a)
