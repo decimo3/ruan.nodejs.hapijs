@@ -1,8 +1,15 @@
 const Hapi = require('@hapi/hapi')
 const routes = require("./routes")
+// require('dotenv/config')
+
+// const { HAPI_PORT } = process.env;
+// const { HAPI_HOST } = process.env;
 
 const init = async () => {
-  const server = new Hapi.Server({port: 3000, host: 'localhost'})
+  const server = new Hapi.Server({
+    port: 3000,
+    host: 'localhost'
+  })
   server.route(routes)
   await server.register({
     plugin: require('hapi-cors'),
@@ -15,7 +22,7 @@ const init = async () => {
     console.log(`Pressione ctrl + C para finalizar o servidor!`)
 } // Fim da declaração da função init
 process.on('unhandledRejection', (err) => {
-  console.log(err)
+  console.error(err)
   process.exit(1)
 })
 process.on("beforeExit", (exit) => {

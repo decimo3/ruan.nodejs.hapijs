@@ -3,6 +3,11 @@ const handles = require("./handles")
 module.exports = [
   {
     method: 'GET',
+    path: '/{any*}',
+    handler: handles.noContent
+  },
+  {
+    method: 'GET',
     path: '/api/v1/publicacao',
     handler: handles.listarPublicação
   },

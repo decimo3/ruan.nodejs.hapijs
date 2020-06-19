@@ -1,10 +1,14 @@
 const publicacoes = require('./publicações')
 const usuarios = require('./usuarios')
 
+async function noContent(request, response) {
+  await response.file('../public/404.html').code(404)
+}
+
 async function listarPublicação (request, response) {
   console.log("Buscando as publicações...")
 return await publicacoes.listarPublicação()
-  .then(console.log("Sucesso ao resgatar publicações"))
+  .then(console.log("Sucesso ao resgatar publicaçõesssssss"))
   .catch((err) => {console.warn("Erro ao resgatar as publicações", err)})
 }
 async function criarPublicação (request, response) {
@@ -26,6 +30,7 @@ return await usuarios.criarUsuario(request.payload.nome, request.payload.email, 
   .catch((err) => {console.error("Erro ao criar", err)})
 }
 module.exports = {
+  noContent,
   listarPublicação,
   criarPublicação,
   listarUsuarios,
