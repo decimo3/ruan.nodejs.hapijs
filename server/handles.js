@@ -1,16 +1,16 @@
 const publicacoes = require('./publicações')
 const usuarios = require('./usuarios')
-require('@hapi/inert')
+const inert = require('@hapi/inert')
 
 function noContent(request, response) {
   console.warn("Usuário tentando acessar url inválida!")
-  return response.response('The page was not found').code(404)
+  return response.file('../public/404.html').code(404)
 }
 
 async function listarPublicação (request, response) {
   console.log("Buscando as publicações...")
 return await publicacoes.listarPublicação()
-  .then(console.log("Sucesso ao resgatar publicaçõesssssss"))
+  .then(console.log("Sucesso ao resgatar publicações"))
   .catch((err) => {console.warn("Erro ao resgatar as publicações", err)})
 }
 async function criarPublicação (request, response) {

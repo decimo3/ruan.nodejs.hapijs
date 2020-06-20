@@ -133,6 +133,12 @@ footer li img {
     height: 100%;
     background-color: #000000;
 }
+label {
+    width: 30%;
+}
+input {
+    width: 70%;
+}
 .barraTitulo {
     background-color: #707070;
     font-size: larger;

@@ -27,3 +27,11 @@ function imprimeResultado (log) {
         a.appendChild(b)
     }
 }
+function enviarDepoimento(){
+    // "http://localhost:3000/api/v1/publicacoes"
+    let titulo = window.document.getElementById("txtTitulo")
+    let depoimento = window.document.getElementById("txtDepoimento")
+    console.log(titulo.value, depoimento.value)
+    titulo.value = ""
+    depoimento.value = ""
+}
