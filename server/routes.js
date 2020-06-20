@@ -2,7 +2,7 @@ const handles = require("./handles")
 
 module.exports = [
   {
-    method: 'GET',
+    method: '*',
     path: '/{any*}',
     handler: handles.noContent
   },

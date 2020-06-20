@@ -10,13 +10,19 @@ const init = async () => {
     port: 3000,
     host: 'localhost'
   })
+  server.path(__dirname + '../public/')
   server.route(routes)
-  await server.register({
+  await server.register([
+    {
     plugin: require('hapi-cors'),
     options: {
       origins: ['*']
+      }
+    },
+    {
+      plugin: require('@hapi/inert')
     }
-  })
+  ])
   await server.start()
     console.log(`Server running at: ${server.info.uri}`)
     console.log(`Pressione ctrl + C para finalizar o servidor!`)

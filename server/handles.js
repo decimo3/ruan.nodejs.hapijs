@@ -1,8 +1,10 @@
 const publicacoes = require('./publicações')
 const usuarios = require('./usuarios')
+require('@hapi/inert')
 
-async function noContent(request, response) {
-  await response.file('../public/404.html').code(404)
+function noContent(request, response) {
+  console.warn("Usuário tentando acessar url inválida!")
+  return response.response('The page was not found').code(404)
 }
 
 async function listarPublicação (request, response) {
@@ -35,5 +37,4 @@ module.exports = {
   criarPublicação,
   listarUsuarios,
   criarUsuario,
-
 }
