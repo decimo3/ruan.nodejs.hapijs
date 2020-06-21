@@ -3,10 +3,14 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="Ruan Camello">
+  <meta name="description" content="Minha vida em uma página">
+  <meta name="keywords" content="Camello, Portifólio, Desenvolvimento">
+  <link rel="icon" type="image/png" href="./favicon.ico" sizes="32x32">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
   <title>@RuanCamello - Página inicial</title>
   <link rel="stylesheet" type="text/css" href="index.css" />
-  <script type="module" type="text/javascript" src="main.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="index.js"></script>
 </head>
 
 <body>
@@ -14,6 +18,7 @@
     <h1>
       @RuanCamello - Minha vida em um arquivo na internet
     </h1>
+
   </header>
   <nav class="row">
     <li class="col-3 selected"><a href="index.html">Inicio</a></li>
@@ -23,24 +28,24 @@
   </nav>
   <div class="row" id="mestre">
     <div id="esquerda" class="col-2" name="adsense-esquerda"></div>
+    <!--  -->
     <div id="quadro" class="col-8">
-      <form action="#">
-        <div id="titulo" class="barraTitulo">
-          <label>Título do depoimento:</label>
-          <input id="txtTitulo" placeholder="Título do depoimento">
-          <div id="depoimento" class="corpoDepoimento">
-            <label>Depoimento:</label>
-            <input id="txtDepoimento" placeholder="Escreva o seu depoimento aqui" class="corpoDepoimento">
+      <form name="criarDepoimento" action="http://localhost:3000/api/v1/publicacao" method="POST">
+        <div id="barraTitulo" class="barraTitulo">
+          <label for="txtTitulo">Título:</label>
+          <input id="txtTitulo" name="txtTitulo" type="text" placeholder="Título do depoimento" required>
+          <div id="corpoDepoimento" class="corpoDepoimento">
+            <label for="txtDepoimento">Depoimento:</label>
+            <input id="txtDepoimento" name="txtDepoimento" type="text" placeholder="Escreva o seu depoimento aqui" class="corpoDepoimento" required>
           </div>
-          <button id="BTform" type="submit" onclick="enviarDepoimento()">Enviar depoimento</button>
+          <input type="submit">
         </div>
-        
       </form>
     </div>
+    <!--  -->
     <div id="direita" class="col-2" name="adsense-direira"></div>
   </div>
   <footer class="row">
-    <!--<div class="row">-->
     <div class="col-3">
       Redes sociais:<br><br>
       <a target="_blank" href="https://www.facebook.com/ruanfaustinocamellodasilva/"><img
@@ -67,7 +72,6 @@
       <li>Minhas paisagens</li>
       <li>Fotos de trabalhos</li>
     </div>
-    <!--</div>-->
     <div class="col-12">Todos os direitos reservados.</div>
   </footer>
 </body>

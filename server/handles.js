@@ -15,7 +15,8 @@ return await publicacoes.listarPublicação()
 }
 async function criarPublicação (request, response) {
   console.log("Salvando a publicação no banco...")
-return await publicacoes.criarPublicação(request.payload.nome, request.payload.titulo, request.payload.depoimento)
+  console.log(request.payload)
+return await publicacoes.criarPublicação(request,payload.nome, request.payload.txtTitulo, request.payload.txtDepoimento)
   .then(console.log("Publicação salva com sucesso!"))
   .catch((err) => {console.error("Erro ao criar publicação", err)})
 }

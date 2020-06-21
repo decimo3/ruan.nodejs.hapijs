@@ -133,13 +133,14 @@ footer li img {
     height: 100%;
     background-color: #000000;
 }
-label {
+.barraTitulo label {
     width: 30%;
 }
-input {
+.barraTitulo input {
     width: 70%;
 }
 .barraTitulo {
+    color: #ffffff;
     background-color: #707070;
     font-size: larger;
     border: 1px solid #000000;
@@ -147,6 +148,7 @@ input {
     font-family: Arial Narrow,Arial,sans-serif; 
 }
 .corpoDepoimento {
+    color: #000000;
     background-color: #efefef;
     border: 1px solid #000000;
     padding: 15px;
