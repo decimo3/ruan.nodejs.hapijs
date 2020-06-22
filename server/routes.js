@@ -21,9 +21,4 @@ module.exports = [
     path: '/api/v1/usuarios',
     handler: handles.listarUsuarios
   },
-  {
-    method: 'POST',
-    path: '/api/v1/usuarios',
-    handler: handles.listarUsuarios
-  },
 ]

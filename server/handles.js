@@ -14,12 +14,19 @@ return await publicacoes.listarPublicação()
   .catch((err) => {console.warn("Erro ao resgatar as publicações", err)})
 }
 async function criarPublicação (request, response) {
- // #TODO: passar arguments do payload para o banco 
   console.log("Salvando a publicação no banco...")
   console.log(request.payload)
-return await publicacoes.criarPublicação(request.payload.txtNome, request.payload.txtTitulo, request.payload.txtDepoimento)
-  .then(console.log("Publicação salva com sucesso!"))
-  .catch((err) => {console.error("Erro ao criar publicação", err)})
+await publicacoes.criarPublicação(request.payload.txtNome, request.payload.txtTitulo, request.payload.txtDepoimento)
+  .then((obj)=>{
+    console.log("Publicação salva com sucesso!")
+    console.log(obj)
+    response.response(obj).code(201)
+    // TODO: fazer uma resposta válida!
+  })
+  .catch((err) => {
+    console.error("Erro ao criar publicação", err)
+    response.response({}).code(400)
+  })
 }
 async function listarUsuarios () {
   console.log("Acessando a lista de usuários...")

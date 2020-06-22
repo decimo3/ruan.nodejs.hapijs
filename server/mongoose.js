@@ -1,5 +1,4 @@
 // require('dotenv/config')
-
 // const { MONGO_PORT } = process.env;
 // const { MONGO_HOST } = process.env;
 // const { MONGO_DB } = process.env;
@@ -11,26 +10,22 @@ try{
   console.error(error)
 }
 
-
-var estruturaDB = new bancodados.Schema({
+var estruturaPublicação = new bancodados.Schema({
   nome: String,
   titulo: String,
   depoimento: String,
   dataHora: Date,
 })
 
-var estruturaDB = new bancodados.Schema({
+var estruturaUsuário = new bancodados.Schema({
   nome: String,
   email: String,
   senha: String,
   telefone: Number,
 })
 
-const postagens = bancodados.model('postagems', estruturaDB);
+const postagens = bancodados.model('postagems', estruturaPublicação);
 
-const usuario = bancodados.model('usuarios', estruturaDB);
+const usuario = bancodados.model('usuarios', estruturaUsuário);
 
-module.exports = {
-  postagens,
-  usuario
-}
+module.exports = {postagens, usuario}
