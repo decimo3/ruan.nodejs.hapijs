@@ -14,9 +14,10 @@ return await publicacoes.listarPublicação()
   .catch((err) => {console.warn("Erro ao resgatar as publicações", err)})
 }
 async function criarPublicação (request, response) {
+ // #TODO: passar arguments do payload para o banco 
   console.log("Salvando a publicação no banco...")
   console.log(request.payload)
-return await publicacoes.criarPublicação(request,payload.nome, request.payload.txtTitulo, request.payload.txtDepoimento)
+return await publicacoes.criarPublicação(request.payload.txtNome, request.payload.txtTitulo, request.payload.txtDepoimento)
   .then(console.log("Publicação salva com sucesso!"))
   .catch((err) => {console.error("Erro ao criar publicação", err)})
 }
