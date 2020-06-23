@@ -2,19 +2,14 @@ const handles = require("./handles")
 
 module.exports = [
   {
-    method: '*',
-    path: '/{any*}',
-    handler: handles.noContent
-  },
-  {
     method: 'GET',
     path: '/api/v1/publicacao',
-    handler: handles.listarPublicação
+    handler: handles.listarPublicacao
   },
   {
     method: 'POST',
     path: '/api/v1/publicacao',
-    handler: handles.criarPublicação
+    handler: handles.criarPublicacao
   },
   {
     method: 'GET',

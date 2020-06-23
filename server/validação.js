@@ -1,4 +1,4 @@
-function publicação(nome, titulo, depoimento) {
+function publicacao(nome, titulo, depoimento) {
   if ((nome == '') || (nome == undefined) || (nome == null)) {
     return false
   } else {
@@ -17,5 +17,5 @@ function publicação(nome, titulo, depoimento) {
   }
 }
 module.exports = {
-  publicação,
+  publicacao,
 }
