@@ -12,7 +12,7 @@ async function listarPublicacoes (req, res) {
 }
 
 async function criarPublicacao (req, res) {
-  return await publicacoes.criarPublicacao(req.payload.txtNome, req.payload.txtTitulo, req.payload.txtDepoimento)
+  return await publicacoes.criarPublicacao(req.payload.txtNome, req.payload.txtTitulo, req.payload.txtDepoimento, req.payload.favorito)
     .then((post) => {
       return res.response(post).code(201)
     })

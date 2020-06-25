@@ -1,13 +1,22 @@
-export function paginaPrincipal (URL) {
-    fetch(URL, {method: 'GET'})
+export function paginaPrincipal(URL) {
+    fetch(URL, { method: 'GET' })
         .then((res) => {
-            res.json()
-                .then((json) => { imprimeResultado(json) })
-                .catch((err) => { console.error("Não foi possível converter a resposta em JSON", err) })
+            if (response.ok) {
+                return res.json().then((json) => { imprimeResultado(json) })
+            } else {
+                console.error("Network response was not ok.", err)
+                let quadro = window.document.getElementById("quadro")
+                quadro.innerHTML = "Não foi possível responder a sua solicitação!"
+                quadro.style.padding = "100px"
+            }
+        }).catch((err) => {
+            console.error("Não foi possível responder a sua solicitação!", err)
+            let quadro = window.document.getElementById("quadro")
+            quadro.innerHTML = "Não foi possível responder a sua solicitação!"
+            quadro.style.padding = "100px"
         })
-        .catch((err) => { console.error("Não foi possível responder a sua solicitação", err) })
-};
-function imprimeResultado (log) {
+}
+function imprimeResultado(log) {
     for (let index = log.length - 1; index >= 0; index--) {
         let quadro = window.document.getElementById("quadro")
         let titulo = window.document.createElement("div")
@@ -21,11 +30,22 @@ function imprimeResultado (log) {
         depoimento.innerText = `${log[index].depoimento}`
         titulo.appendChild(depoimento)
     }
-};
-function enviarDepoimento () {
-    let titulo = window.document.getElementById("txtTitulo")
-    let depoimento = window.document.getElementById("txtDepoimento")
-    console.log(titulo.value, depoimento.value)
+}
+async function enviarDepoimento() {
+    let txtNome = window.document.getElementById("txtNome")
+    let txtTitulo = window.document.getElementById("txtTitulo")
+    let txtDepoimento = window.document.getElementById("txtDepoimento")
+    let favorito = window.document.getElementById("favorito")
+    nome.value = ""
     titulo.value = ""
     depoimento.value = ""
-};
+    const form = {nome: txtNome.value, titulo: txtTitulo.value,  depoimento: txtDepoimento.value, favorito: favorito.value}
+    await form.json().then((json)=>{
+
+    })
+    .catch((err)=>{
+        
+    })
+    
+    
+}

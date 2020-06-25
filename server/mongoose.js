@@ -6,6 +6,7 @@ var estruturaPublicação = new bancodados.Schema({
   nome: String,
   titulo: String,
   depoimento: String,
+  favorito: Boolean,
   timestamps: {
     createdAt: Number,
     updatedAt: Number,

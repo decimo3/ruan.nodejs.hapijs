@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
   <title>@RuanCamello - Página inicial</title>
   <link rel="stylesheet" type="text/css" href="index.css" />
-  <script type="text/javascript" src="index.js"></script>
+  <script  type="module" src="index.js"></script>
 </head>
 
 <body>
@@ -30,17 +30,18 @@
     <div id="esquerda" class="col-2" name="adsense-esquerda"></div>
     <!--  -->
     <div id="quadro" class="col-8">
-      <form name="criarDepoimento" action="http://localhost:3000/api/v1/publicacao" method="POST">
+      <form id="criarDepoimento" name="criarDepoimento">
         <div id="barraTitulo" class="barraTitulo">
           <label for="txtNome">Nome:</label>
           <input id="txtNome" name="txtNome" type="text" placeholder="Coloque seu nome aqui" required><br>
           <label for="txtTitulo">Título:</label>
           <input id="txtTitulo" name="txtTitulo" type="text" placeholder="Título do depoimento" required>
+          <input id="favorito" nome="favorito" type="checkbox"><br>
           <div id="corpoDepoimento" class="corpoDepoimento">
             <label for="txtDepoimento">Depoimento:</label>
             <input id="txtDepoimento" name="txtDepoimento" type="text" placeholder="Escreva o seu depoimento aqui" class="corpoDepoimento" required>
           </div>
-          <input type="submit">
+          <input type="submit" onclick="enviarDepoimento()">
         </div>
       </form>
     </div>
