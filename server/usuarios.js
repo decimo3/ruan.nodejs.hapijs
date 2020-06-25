@@ -1,12 +1,14 @@
-const usuarios = require('./mongoose')
+// const usuarios = require('./mongoose')
+const validação = require('./validação')
 
 async function listarUsuarios () {
-  console.log("Buscando usuario...")
   return await usuarios.usuario.find({})
 }
-async function criarUsuario (nome="Nome de teste", email="Titulo de teste", senha="Depoimento de teste", telefone=21975429768) {
-  console.log("Salvando usuario...")
-  return await usuarios.usuario.create({nome, email, senha, telefone})
+async function criarUsuario (nome, email, senha, telefone) {
+  let valido = validação.publicacao([nome, email, senha, telefone])
+  if (valido) {
+    return await usuarios.usuario.create({nome, email, senha, telefone})
+  }
 }
 
 module.exports = {

@@ -1,20 +1,15 @@
-// require('dotenv/config')
-// const { MONGO_PORT } = process.env;
-// const { MONGO_HOST } = process.env;
-// const { MONGO_DB } = process.env;
-
 const bancodados = require('mongoose') // Mongoose main page https://mongoosejs.com/
-try{
-  bancodados.connect(`mongodb://localhost:27017/depoimentos`, {useNewUrlParser: true, useUnifiedTopology: true})
-} catch (error) {
-  console.error(error)
-}
+try { bancodados.connect(`mongodb://localhost:27017/depoimentos`, {useNewUrlParser: true, useUnifiedTopology: true}) }
+catch (error) { throw new Error("Banco de dados está inacessível!") }
 
 var estruturaPublicação = new bancodados.Schema({
   nome: String,
   titulo: String,
   depoimento: String,
-  dataHora: Date,
+  timestamps: {
+    createdAt: Number,
+    updatedAt: Number,
+  }
 })
 
 var estruturaUsuário = new bancodados.Schema({
@@ -22,6 +17,10 @@ var estruturaUsuário = new bancodados.Schema({
   email: String,
   senha: String,
   telefone: Number,
+  timestamps: {
+    createdAt: Number,
+    updatedAt: Number,
+  }
 })
 
 const postagens = bancodados.model('postagems', estruturaPublicação);

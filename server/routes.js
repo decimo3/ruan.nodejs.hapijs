@@ -4,7 +4,7 @@ module.exports = [
   {
     method: 'GET',
     path: '/api/v1/publicacao',
-    handler: handles.listarPublicacao
+    handler: handles.listarPublicacoes
   },
   {
     method: 'POST',
@@ -15,5 +15,10 @@ module.exports = [
     method: 'GET',
     path: '/api/v1/usuarios',
     handler: handles.listarUsuarios
+  },
+  {
+    method: 'POST',
+    path: '/api/v1/usuarios',
+    handler: handles.criarUsuario
   },
 ]

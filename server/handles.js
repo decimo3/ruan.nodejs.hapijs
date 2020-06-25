@@ -1,52 +1,49 @@
 const publicacoes = require('./publicações')
 const usuarios = require('./usuarios')
-const inert = require('@hapi/inert')
 
-function noContent(request, response) {
-  console.warn("Usuário tentando acessar url inválida!")
-  return response.file('../public/404.html').code(404)
-}
-
-async function listarPublicacao(request, response) {
-  console.log("Buscando as publicações...")
-  return await publicacoes.listarPublicacao()
-    .then(console.log("Sucesso ao resgatar publicações"))
-    .catch((err) => { console.warn("Erro ao resgatar as publicações", err) })
-}
-
-async function criarPublicacao(request, response) {
-  console.log("Salvando a publicação no banco...")
-  console.dir(request.payload)
-  return await publicacoes.criarPublicacao(request.payload.txtNome, request.payload.txtTitulo, request.payload.txtDepoimento)
-    .then((obj) => {
-      // console.log("Publicação salva com sucesso!")
-      // console.log(obj)
-      return response.response(obj).code(201)
+async function listarPublicacoes (req, res) {
+  return await publicacoes.listarPublicacoes()
+    .then((posts) => {
+      return res.response(posts).code(200)
     })
     .catch((err) => {
-      console.error("Erro ao criar publicação", err)
-      response.response({}).code(400)
+      console.warn("Erro ao resgatar as publicações", err)
     })
-    .finally((res) => {
-      console.log("Processo finalizado!\n", res);
-    });
 }
-async function listarUsuarios() {
-  console.log("Acessando a lista de usuários...")
-  return await usuarios.listarUsuarios()
-    .then(console.log("Sucesso ao resgatar os usuários"))
-    .catch((err) => { console.warn("Erro ao consultar o banco de dados", err) })
+
+async function criarPublicacao (req, res) {
+  return await publicacoes.criarPublicacao(req.payload.txtNome, req.payload.txtTitulo, req.payload.txtDepoimento)
+    .then((post) => {
+      return res.response(post).code(201)
+    })
+    .catch((err) => {
+      console.error("Erro ao criar a publicação", err)
+    })
 }
-async function criarUsuario(request, response) {
-  console.log("Salvando usuario no banco...")
-  return await usuarios.criarUsuario(request.payload.nome, request.payload.email, request.payload.senha, request.payload.telefone)
-    .then(console.log("Sucesso ao criar usuario!"))
-    .catch((err) => { console.error("Erro ao criar", err) })
+
+async function listarUsuario(id) {
+  return await usuarios.listarUsuarios(id)
+    .then((user) => {
+      return res.response(user).code(200)
+    })
+    .catch((err) => {
+      console.warn("Erro ao resgatar os usuários!", err)
+    })
 }
+
+async function criarUsuario(req, res) {
+  return await usuarios.criarUsuario(req.payload.nome, req.payload.email, req.payload.senha, req.payload.telefone)
+    .then((user) => {
+      return res.response(user).code(201)
+    })
+    .catch((err) => {
+      console.error("Erro ao criar usuário!", err)
+    })
+}
+
 module.exports = {
-  noContent,
-  listarPublicacao,
+  listarPublicacoes,
   criarPublicacao,
-  listarUsuarios,
+  listarUsuario,
   criarUsuario,
 }
