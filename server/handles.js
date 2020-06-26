@@ -1,4 +1,4 @@
-const publicacoes = require('./publicações')
+const publicacoes = require('./publicacoes')
 const usuarios = require('./usuarios')
 
 async function listarPublicacoes (req, res) {

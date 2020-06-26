@@ -1,6 +1,6 @@
-function printhash (num=80) {
+function printhash (texto) {
   let result = ''
-  for (let index = 0; index < num; index++) {
+  for (let index = 0; index < 80; index++) {
     result += '#'
   }
   return (result)

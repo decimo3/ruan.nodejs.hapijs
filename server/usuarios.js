@@ -1,5 +1,5 @@
 // const usuarios = require('./mongoose')
-const validação = require('./validação')
+const validação = require('./validacao')
 
 async function listarUsuarios () {
   return await usuarios.usuario.find({})

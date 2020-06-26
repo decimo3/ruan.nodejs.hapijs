@@ -1,5 +1,5 @@
 // const postagens = require('./mongoose')
-const validação = require('./validação')
+const validação = require('./validacao')
 
 async function listarPublicacoes() {
   return await postagens.postagens.find({})
