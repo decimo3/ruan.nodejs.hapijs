@@ -1,21 +1,30 @@
-const logs = require('./logs')
+const Path = require('path')
 const Hapi = require('@hapi/hapi')
+const Inert = require('@hapi/inert')
 const routes = require("./routes")
+const logs = require('./logs')
 
 const init = async () => {
   const server = new Hapi.Server({
     port: 3000,
     host: 'localhost',
+    routes: {
+      files: {
+        relativeTo: Path.join(__dirname, 'public')
+      }
+    }
   })
-  server.route(routes)
+  
   await server.register([
     {
       plugin: require('hapi-cors'),
       options: {
         origins: ['*']
       }
-    }
+    },
+    Inert
   ])
+  server.route(routes)
 await server.start()
 console.log(logs.printhash())
 console.log(`Server running at: ${server.info.uri}`)
