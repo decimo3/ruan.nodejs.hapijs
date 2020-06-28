@@ -19,9 +19,9 @@ module.exports = [
     handler: handles.criarPublicacao
   },
   {
-    method: 'GET',
-    path: '/api/v1/usuarios',
-    handler: handles.listarUsuario
+    method: 'POST',
+    path: '/api/v1/login',
+    handler: handles.logarUsuario
   },
   {
     method: 'POST',

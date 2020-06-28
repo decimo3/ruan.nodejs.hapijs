@@ -21,13 +21,16 @@ async function criarPublicacao (req, res) {
     })
 }
 
-async function listarUsuario(id) {
-  return await usuarios.listarUsuarios(id)
+async function logarUsuario(req, res) {
+  return await usuarios.logarUsuarios(req.payload.email, req.payload.senha)
     .then((user) => {
       return res.response(user).code(200)
     })
-    .catch((err) => {
-      console.warn("Erro ao resgatar os usuários!", err)
+    .catch(() => {
+      const errou = "Erro ao logar os usuário!"
+      console.warn(errou)
+      
+      return res.response(JSON.stringify({errou})).code(401)
     })
 }
 
@@ -44,6 +47,6 @@ async function criarUsuario(req, res) {
 module.exports = {
   listarPublicacoes,
   criarPublicacao,
-  listarUsuario,
+  logarUsuario,
   criarUsuario,
 }

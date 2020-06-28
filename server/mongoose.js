@@ -8,19 +8,19 @@ var estruturaPublicação = new bancodados.Schema({
   depoimento: String,
   favorito: Boolean,
   timestamps: {
-    createdAt: Number,
-    updatedAt: Number,
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
   }
 })
 
 var estruturaUsuário = new bancodados.Schema({
   nome: String,
-  email: String,
   senha: String,
+  email: String,
   telefone: Number,
   timestamps: {
-    createdAt: Number,
-    updatedAt: Number,
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
   }
 })
 
