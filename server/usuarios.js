@@ -4,7 +4,7 @@ const validação = require('./validacao')
 async function logarUsuarios (email, senha) {
   const result =  await usuarios.usuario.exists({email})
   if (result) {
-    const user = await usuarios.usuario.findOne()
+    const user = await usuarios.usuario.findOne({email})
     if (user.senha == senha) {
       const resultado = []
       return resultado
