@@ -26,10 +26,10 @@ const init = async () => {
   ])
   server.route(routes)
 await server.start()
-console.log(logs.printhash())
-console.log(`Server running at: ${server.info.uri}`)
-console.log(`Pressione ctrl + C para finalizar o servidor!`)
-console.log(logs.printhash())
+console.log(logs.printHash())
+console.log(logs.textoHash(`Server running at: ${server.info.uri}`))
+console.log(logs.textoHash(`Pressione ctrl + C para finalizar o servidor!`))
+console.log(logs.printHash())
 } // Fim da declaração da função init
 process.on('unhandledRejection', (err) => {
   console.error(err)
