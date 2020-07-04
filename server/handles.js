@@ -1,24 +1,30 @@
 const publicacoes = require('./publicacoes')
 const usuarios = require('./usuarios')
+const validação = require('./validacao')
 
 async function listarPublicacoes (req, res) {
-  return await publicacoes.listarPublicacoes()
+    return await publicacoes.listarPublicacoes()
     .then((posts) => {
       return res.response(posts).code(200)
     })
     .catch((err) => {
-      console.warn("Erro ao resgatar as publicações", err)
+      return res.response("Erro ao resgatar as publicações").code(401)
     })
+  
 }
 
 async function criarPublicacao (req, res) {
-  return await publicacoes.criarPublicacao(req.payload.txtNome, req.payload.txtTitulo, req.payload.txtDepoimento, req.payload.favorito)
+  if (validação.publicacao([req.payload.nome, req.payload.titulo, req.payload.depoimento])) {
+  return await publicacoes.criarPublicacao(req.payload.txtNome, req.payload.txtTitulo, req.payload.txtDepoimento)
     .then((post) => {
       return res.response(post).code(201)
     })
     .catch((err) => {
-      console.error("Erro ao criar a publicação", err)
+      res.response("Erro ao criar a publicação").code(401)
     })
+  } else {
+    return res.response("Solicitação inválida para o caminho solicitado!").code(401)
+  }
 }
 
 async function logarUsuario(req, res) {
