@@ -1,4 +1,4 @@
-function publicacao(...args) {
+function requisicao(...args) {
   let result = true
   args.forEach(element => {
     if ((element == '') || (element == undefined) || (element == null)) {
@@ -8,5 +8,5 @@ function publicacao(...args) {
   return result
 }
 module.exports = {
-  publicacao,
+  requisicao,
 }

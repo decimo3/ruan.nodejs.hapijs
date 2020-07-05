@@ -1,5 +1,5 @@
 const usuarios = require('./mongoose')
-const validação = require('./validacao')
+const vakidacao = require('./validacao')
 
 async function logarUsuarios (email, senha) {
   const result =  await usuarios.usuario.exists({email})
@@ -7,7 +7,7 @@ async function logarUsuarios (email, senha) {
     const user = await usuarios.usuario.findOne({email})
     if (user.senha == senha) {
       const resultado = []
-      return resultado
+      return resultado //TODO responder requisição com um token
     } else {
       throw new Error("email ou senha inválidos");
       
@@ -18,9 +18,15 @@ async function logarUsuarios (email, senha) {
   }
 }
 async function criarUsuario (nome, email, senha, telefone) {
-  let valido = validação.publicacao([nome, email, senha, telefone])
+  let valido = vakidacao.requisicao([nome, email, senha, telefone])
   if (valido) {
-    return await usuarios.usuario.create({nome, email, senha, telefone})
+    const result =  await usuarios.usuario.exists({email})
+    if (result != true) {
+      return await usuarios.usuario.create({nome, email, senha, telefone})
+    } else {
+      throw new Error("Já existe usuário com esse e-mail!")
+    }
+
   }
 }
 

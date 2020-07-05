@@ -41,12 +41,15 @@ async function logarUsuario(req, res) {
 }
 
 async function criarUsuario(req, res) {
+  
   return await usuarios.criarUsuario(req.payload.nome, req.payload.email, req.payload.senha, req.payload.telefone)
     .then((user) => {
       return res.response(user).code(201)
     })
     .catch((err) => {
-      console.error("Erro ao criar usuário!", err)
+      error = "Erro ao criar o usuário"
+      err = JSON.stringify({error})
+      return res.response(err).code(401)
     })
 }
 
