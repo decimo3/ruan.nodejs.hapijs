@@ -8,7 +8,7 @@ module.exports = [
   },
   {
     method: 'POST',
-    path: '/api/v1/publicacoes',
+    path: '/api/v1/publicacao',
     handler: handles.criarPublicacao
   },
   {
@@ -18,7 +18,7 @@ module.exports = [
   },
   {
     method: 'POST',
-    path: '/api/v1/usuarios',
+    path: '/api/v1/usuario',
     handler: handles.criarUsuario
   },
 ]
