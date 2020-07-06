@@ -35,9 +35,9 @@ async function logarUsuario(req, res) {
     .then((user) => {
       return res.response(user).code(200)
     })
-    .catch(() => {
+    .catch((err) => {
       const errou = "Erro ao logar os usuário!"
-      console.warn(errou)
+      console.warn(errou, err)
       
       return res.response(JSON.stringify({errou})).code(401)
     })
