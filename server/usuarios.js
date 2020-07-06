@@ -13,8 +13,7 @@ async function logarUsuarios(email, senha) {
         })
         .catch((err)=>{
           console.error("Erro ao criar o Token", err)
-        }
-      )
+        })
       return Token
     } else {
       throw new Error("email ou senha inválidos");

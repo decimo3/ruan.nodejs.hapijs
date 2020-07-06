@@ -3,6 +3,7 @@ const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
 const routes = require("./routes")
 const logs = require('./logs')
+require('dotenv').config()
 
 const init = async () => {
   const server = new Hapi.Server({

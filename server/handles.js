@@ -39,7 +39,7 @@ async function logarUsuario(req, res) {
       const errou = "Erro ao logar os usuário!"
       console.warn(errou, err)
       
-      return res.response(JSON.stringify({errou})).code(401)
+      return res.response(JSON.stringify({err})).code(401)
     })
 }
 
