@@ -1,4 +1,5 @@
 const handles = require("./handles")
+const validation = require("./validacao")
 
 module.exports = [
   {
@@ -9,16 +10,31 @@ module.exports = [
   {
     method: 'POST',
     path: '/api/v1/publicacao',
-    handler: handles.criarPublicacao
+    handler: handles.criarPublicacao,
+    options: {
+      validate: {
+        payload: validation.criarPost,
+      },
+    },
   },
   {
     method: 'POST',
     path: '/api/v1/login',
-    handler: handles.logarUsuario
+    handler: handles.logarUsuario,
+    options: {
+      validate: {
+        payload: validation.loginUser,
+      },
+    },
   },
   {
     method: 'POST',
     path: '/api/v1/usuario',
-    handler: handles.criarUsuario
+    handler: handles.criarUsuario,
+    options: {
+      validate: {
+        payload: validation.criarUser,
+      },
+    },
   },
 ]

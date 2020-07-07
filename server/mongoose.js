@@ -1,6 +1,13 @@
 const bancodados = require('mongoose') // Mongoose main page https://mongoosejs.com/
-try { bancodados.connect(`mongodb://localhost:27017/depoimentos`, {useNewUrlParser: true, useUnifiedTopology: true}) }
-catch (error) { throw new Error("Banco de dados está inacessível!") }
+bancodados.connect(`mongodb+srv://user:user@ruancamello.lsztj.gcp.mongodb.net/remota?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+  console.log("Banco de dados conectado!")
+}
+)
+.catch((error) => { 
+  console.error(error)
+  throw new Error("Banco de dados está inacessível!")
+})
 
 var estruturaPublicação = new bancodados.Schema({
   nome: String,
