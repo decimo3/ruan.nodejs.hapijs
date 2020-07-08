@@ -4,12 +4,12 @@ const validation = require("./validacao")
 module.exports = [
   {
     method: 'GET',
-    path: '/api/v1/publicacoes',
+    path: '/api/v1/publicacoes/',
     handler: handles.listarPublicacoes
   },
   {
     method: 'POST',
-    path: '/api/v1/publicacao',
+    path: '/api/v1/publicacao/',
     handler: handles.criarPublicacao,
     options: {
       validate: {
@@ -19,7 +19,7 @@ module.exports = [
   },
   {
     method: 'POST',
-    path: '/api/v1/login',
+    path: '/api/v1/login/',
     handler: handles.logarUsuario,
     options: {
       validate: {
@@ -29,7 +29,7 @@ module.exports = [
   },
   {
     method: 'POST',
-    path: '/api/v1/usuario',
+    path: '/api/v1/usuario/',
     handler: handles.criarUsuario,
     options: {
       validate: {

@@ -13,9 +13,9 @@ const loginUser = Joi.object({
 })
 
 const criarPost = Joi.object({
-  nome: Joi.string().min(10).max(50).required(),
-  titulo: Joi.string().min(30).max(120).required(),
-  depoimento: Joi.string().min(120).max(500).required(),
+  txtNome: Joi.string().min(10).max(50).required(),
+  txtTitulo: Joi.string().min(30).max(120).required(),
+  txtDepoimento: Joi.string().min(120).max(5000).required(),
 })
 
 module.exports = {
