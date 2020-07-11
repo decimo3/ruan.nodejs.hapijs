@@ -1,7 +1,7 @@
 const Path = require('path')
 const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
-const routes = require("./routes")
+const routes = require("./routes.index")
 const logs = require('./logs')
 require('dotenv').config()
 
