@@ -1,36 +1,38 @@
-// require('dotenv/config')
-
-// const { MONGO_PORT } = process.env;
-// const { MONGO_HOST } = process.env;
-// const { MONGO_DB } = process.env;
-
 const bancodados = require('mongoose') // Mongoose main page https://mongoosejs.com/
-try{
-  bancodados.connect(`mongodb://localhost:27017/depoimentos`, {useNewUrlParser: true, useUnifiedTopology: true})
-} catch (error) {
-  console.error(error)
+bancodados.connect(`mongodb+srv://user:user@ruancamello.lsztj.gcp.mongodb.net/remota?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+  console.log("Banco de dados conectado!")
 }
+)
+.catch((error) => { 
+  console.error(error)
+  throw new Error("Banco de dados está inacessível!")
+})
 
-
-var estruturaDB = new bancodados.Schema({
+var estruturaPublicação = new bancodados.Schema({
   nome: String,
   titulo: String,
   depoimento: String,
-  dataHora: Date,
+  favorito: Boolean,
+  timestamps: {
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+  }
 })
 
-var estruturaDB = new bancodados.Schema({
+var estruturaUsuário = new bancodados.Schema({
   nome: String,
-  email: String,
   senha: String,
+  email: String,
   telefone: Number,
+  timestamps: {
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+  }
 })
 
-const postagens = bancodados.model('postagems', estruturaDB);
+const postagens = bancodados.model('postagems', estruturaPublicação);
 
-const usuario = bancodados.model('usuarios', estruturaDB);
+const usuario = bancodados.model('usuarios', estruturaUsuário);
 
-module.exports = {
-  postagens,
-  usuario
-}
+module.exports = {postagens, usuario}

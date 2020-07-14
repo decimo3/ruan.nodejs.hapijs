@@ -1,15 +1,43 @@
 const usuarios = require('./mongoose')
+const JWT = require('./auth.JWT')
 
-async function listarUsuarios () {
-  console.log("Buscando usuario...")
-  return await usuarios.usuario.find({})
+
+async function logarUsuarios(email, senha) {
+  const result = await usuarios.usuario.exists({ email })
+  if (result) {
+    const user = await usuarios.usuario.findOne({ email })
+    if (user.senha == senha) {
+      const {_id, nome, email, telefone} = user
+      Token = await JWT.generateToken({_id, nome, email, telefone}).then((token)=>{
+        return {token}
+        })
+        .catch((err)=>{
+          console.error("Erro ao criar o Token", err)
+        })
+      return Token
+    } else {
+      throw new Error("email ou senha inválidos");
+    }
+  } else {
+    throw new Error("Usuário não existe!");
+  }
 }
-async function criarUsuario (nome="Nome de teste", email="Titulo de teste", senha="Depoimento de teste", telefone=21975429768) {
-  console.log("Salvando usuario...")
-  return await usuarios.usuario.create({nome, email, senha, telefone})
+
+async function criarUsuario(nome, email, senha, telefone) {
+  const existEmail = await usuarios.usuario.exists({ email })
+  if (existEmail != true) {
+    const existTelefone = await usuarios.usuario.exists({ telefone })
+    if (existTelefone != true) {
+      return await usuarios.usuario.create({ nome, email, senha, telefone })
+    } else {
+      throw new Error("Já existe usuário com esse telefone!")
+    }
+  } else {
+    throw new Error("Já existe usuário com esse e-mail!")
+  }
 }
 
 module.exports = {
-  listarUsuarios,
+  logarUsuarios,
   criarUsuario,
 }
