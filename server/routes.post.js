@@ -3,7 +3,7 @@ const isValidPost = require('./validacao')
 
 module.exports = [
   {
-    method: 'GET',
+    method: 'POST',
     path: '/api/v1/publicacoes/',
     handler: handlesPost.listarPublicacoes
   },
