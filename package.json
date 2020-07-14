@@ -1,15 +1,14 @@
 {
-  "name": "paginapessoal",
+  "name": "ruan_API",
   "version": "0.0.1",
-  "description": "Meu blog pessoal para publicar meus avanços na área de desenvolvimento de software",
-  "main": "index.js",
+  "description": "Minha API HapiJS para aprendizado",
+  "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/"
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decimo3/paginaPessoal.git"
+    "url": "git+https://github.com/decimo3/ruan-API.git"
   },
   "keywords": [
     "Blog",
@@ -18,16 +17,15 @@
   "author": "RuanCamello",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/decimo3/paginaPessoal/issues"
+    "url": "https://github.com/decimo3/ruan-API/issues"
   },
-  "homepage": "https://github.com/decimo3/paginaPessoal#readme",
+  "homepage": "https://github.com/decimo3/ruan-API#readme",
   "dependencies": {
     "@hapi/hapi": "^19.1.1",
     "@hapi/inert": "^6.0.1",
     "@hapi/joi": "^17.1.1",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
     "hapi-cors": "^1.0.3",
+    "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
     "mysql": "^2.18.1"
