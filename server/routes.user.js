@@ -5,21 +5,23 @@ module.exports = [
     {
         method: 'POST',
         path: '/api/v1/login/',
-        handler: handlesUser.logarUsuario,
         options: {
+            auth: false,
             validate: {
                 payload: isValidUser.loginUser,
             },
         },
+        handler: handlesUser.logarUsuario,
     },
     {
         method: 'POST',
         path: '/api/v1/usuario/',
-        handler: handlesUser.criarUsuario,
         options: {
+            auth: false,
             validate: {
                 payload: isValidUser.criarUser,
             },
         },
+        handler: handlesUser.criarUsuario,
     },
 ]

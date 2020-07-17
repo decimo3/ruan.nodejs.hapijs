@@ -1,7 +1,6 @@
 const publicacoes = require('./publicacoes')
 
 async function listarPublicacoes(req, res) {
-  // TODO: Adicionar limitação de publicações carregadas pelo usuário
   return await publicacoes.listarPublicacoes(req.payload.valor)
     .then((posts) => {
       return res.response(posts).code(200)
@@ -13,7 +12,7 @@ async function listarPublicacoes(req, res) {
 }
 
 async function criarPublicacao(req, res) {
-  console.log(req.pay)
+  // console.log(req.pay)
   return await publicacoes.criarPublicacao(req.payload.txtNome, req.payload.txtTitulo, req.payload.txtDepoimento)
     .then((post) => {
       return res.response(post).code(201)

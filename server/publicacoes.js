@@ -1,6 +1,6 @@
 const postagens = require('./mongoose')
 
-async function listarPublicacoes(valor) {
+async function listarPublicacoes(valor=10) {
   return await postagens.postagens.find({}).sort({_id:1}).limit(valor).then((data)=>{
     return data
   }).catch((err)=>{
