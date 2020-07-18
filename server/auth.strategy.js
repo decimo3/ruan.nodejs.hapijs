@@ -2,12 +2,13 @@ const { decode } = require("jsonwebtoken")
 
 function strategy(decoded, request, h) {
   // do your checks to see if the person is valid
+console.log(decoded)
   if (decoded) {
-    h.response(`decoded is false`)
+    console.log(`Strategy returns TRUE`)
     return { valid: false }
   }
   else {
-    h.response(`decoded is true`).code(200)
+    console.log(`Strategy returns FALSE`)
     return { valid: true }
   }
 }

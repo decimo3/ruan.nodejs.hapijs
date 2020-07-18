@@ -1,7 +1,7 @@
 const Path = require('path')
 const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
-const validate = require('./auth.strategy')
+const validar = require('./auth.strategy')
 const routes = require("./routes.index")
 const logs = require('./logs')
 require('dotenv').config()
@@ -25,18 +25,32 @@ const init = async () => {
       }
     },
     Inert,
-    require('hapi-auth-jwt2')
   ])
-  // server.auth.scheme('jwt',)
-  server.auth.strategy('jwt', 'jwt', { key: process.env.SECRET_KEY, validate } )
-  server.auth.default('jwt')
+  try {
+    server.auth.scheme('custom', (server, options) => {
+    return {
+      authenticate: (request, h) => {
+          console.log(request.headers)
+          if (request.headers.authorization) {
+            return h.authenticated({credentials: "OK"})
+          } else {
+            throw new Error("Usuário não autenticado!")
+          }
+        }
+      }
+    })
+    server.auth.strategy('jwt', 'custom')
+    server.auth.default('jwt')
+  } catch {
+    console.error("Erro ao definir uma estratégia")
+  }
   server.route(routes)
-await server.start()
-//#region 
-console.log(logs.printHash())
-console.log(logs.textoHash(`Server running at: ${server.info.uri}`))
-console.log(logs.textoHash(`Pressione ctrl + C para finalizar o servidor!`))
-console.log(logs.printHash())
+  await server.start()
+  //#region 
+  console.log(logs.printHash())
+  console.log(logs.textoHash(`Server running at: ${server.info.uri}`))
+  console.log(logs.textoHash(`Pressione ctrl + C para finalizar o servidor!`))
+  console.log(logs.printHash())
 } // Fim da declaração da função init
 process.on('unhandledRejection', (err) => {
   console.error(err)
