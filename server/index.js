@@ -1,9 +1,9 @@
 const Path = require('path')
 const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
-const validar = require('./auth.strategy')
 const routes = require("./routes.index")
 const logs = require('./logs')
+const { auth } = require('./auth.strategy')
 require('dotenv').config()
 
 const init = async () => {
@@ -27,18 +27,7 @@ const init = async () => {
     Inert,
   ])
   try {
-    server.auth.scheme('custom', (server, options) => {
-    return {
-      authenticate: (request, h) => {
-          console.log(request.headers)
-          if (request.headers.authorization) {
-            return h.authenticated({credentials: "OK"})
-          } else {
-            throw new Error("Usuário não autenticado!")
-          }
-        }
-      }
-    })
+    server.auth.scheme('custom', auth)
     server.auth.strategy('jwt', 'custom')
     server.auth.default('jwt')
   } catch {

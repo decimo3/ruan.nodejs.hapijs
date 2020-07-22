@@ -1,17 +1,22 @@
-const { decode } = require("jsonwebtoken")
+const { validateToken } = require("./auth.JWT")
 
-function strategy(decoded, request, h) {
-  // do your checks to see if the person is valid
-console.log(decoded)
-  if (decoded) {
-    console.log(`Strategy returns TRUE`)
-    return { valid: false }
-  }
-  else {
-    console.log(`Strategy returns FALSE`)
-    return { valid: true }
+async function auth (server, options) {
+  return {
+    authenticate: (request, h) => {
+
+      result = await validateToken(request.headers.authorization)
+
+      console.log(request.headers.authorization)
+      if (request.headers.authorization) {
+        return h.authenticated({ credentials: "OK" })
+      } else {
+        // return h.unauthenticated()
+        throw new Error("Usuário não autenticado!")
+      }
+    }
   }
 }
+
 module.exports = {
-  strategy
+  auth
 }
