@@ -1,22 +1,21 @@
 const { validateToken } = require("./auth.JWT")
 
-async function auth (server, options) {
+async function authUser (server, options) {
   return {
-    authenticate: (request, h) => {
+    authenticate: function (request, h) {
 
-      result = await validateToken(request.headers.authorization)
+      result = validateToken(request.headers.authorization)
 
       console.log(request.headers.authorization)
-      if (request.headers.authorization) {
-        return h.authenticated({ credentials: "OK" })
+      if (result) {
+        return h.authenticated({ credentials: {user: "OK"} })
       } else {
-        // return h.unauthenticated()
-        throw new Error("Usuário não autenticado!")
+        return h.unauthenticated("Usuário não autenticado!")
       }
     }
   }
 }
 
 module.exports = {
-  auth
+  authUser
 }

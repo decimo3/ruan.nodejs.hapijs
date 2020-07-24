@@ -1,6 +1,6 @@
 const JWT = require('jsonwebtoken')
 
-const generateToken = data => (
+async function generateToken (data) {
     new Promise((resolve, reject) => {
         const expiration = Math.floor((Date.now() / 1000) + process.env.EXPIRATION)
         JWT.sign(data, process.env.SECRET_KEY, { algorithm: process.env.JWT_ALGORITHM, expiresIn: expiration }, (err, token) => {
@@ -11,8 +11,8 @@ const generateToken = data => (
             }
         })
     })
-)
-const validateToken = data => (
+}
+async function validateToken (data) {
     new Promise((resolve, reject) => {
         JWT.verify(data, process.env.SECRET_KEY, {algorithms: process.env.JWT_ALGORITHM},(err, token) => {
             if (err) {
@@ -21,7 +21,8 @@ const validateToken = data => (
                 resolve(token)
             }
         })
-    }))
+    })
+}
 module.exports = {
     generateToken,
     validateToken,
