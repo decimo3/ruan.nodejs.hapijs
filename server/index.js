@@ -27,9 +27,9 @@ const init = async () => {
     Inert,
   ])
   try {
-    await server.auth.scheme('custom', authUser)
-    server.auth.strategy('jwt', 'custom')
-    server.auth.default('jwt')
+    server.auth.scheme('custom', authUser)
+    server.auth.strategy('custom', 'custom')
+    server.auth.default('custom')
   } catch (e) {
     console.error("Erro ao definir uma estratégia")
     console.log(e)
