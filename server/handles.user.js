@@ -3,8 +3,8 @@ const Token = require('./auth.JWT')
 
 async function logarUsuario(req, res) {
   return await usuarios.logarUsuarios(req.payload.email, req.payload.senha)
-    .then((user) => {
-      return res.response(user).code(200)
+    .then((token) => {
+      return res.response({token}).code(200)
     })
     .catch((err) => {
       // TODO: Gerenciar melhor o erro e passar claramente o erro lançado
@@ -28,9 +28,8 @@ async function criarUsuario(req, res) {
     })
     .catch((err) => {
       // TODO: Gerenciar melhor o erro e passar claramente o erro lançado
-      error = "Erro ao criar o usuário"
-      err = JSON.stringify({ error })
-      return res.response(err).code(401)
+      console.error("Erro ao criar o usuário", err)
+      return res.response().code(401)
     })
 }
 

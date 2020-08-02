@@ -1,19 +1,13 @@
 const usuarios = require('./mongoose')
 const JWT = require('./auth.JWT')
 
-
 async function logarUsuarios(email, senha) {
   const result = await usuarios.usuario.exists({ email })
   if (result) {
     const user = await usuarios.usuario.findOne({ email })
     if (user.senha == senha) {
-      const {_id, nome, email, telefone} = user
-      Token = await JWT.generateToken({_id, nome, email, telefone}).then((token)=>{
-        return {token}
-        })
-        .catch((err)=>{
-          console.error("Erro ao criar o Token", err)
-        })
+      const { _id, nome, email, telefone } = user
+      const Token = await JWT.generateToken({ _id, nome, email, telefone })
       return Token
     } else {
       throw new Error("email ou senha inválidos");
