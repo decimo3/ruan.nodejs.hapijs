@@ -3,9 +3,7 @@ const { validateToken } = require("./auth.JWT")
 const authUser = function (server, options) {
   return {
     authenticate: function (request, h) {
-
-      result = await validateToken(request.headers.authorization)
-
+      result = validateToken(request.headers.authorization)
       if (result) {
         console.log("Usuário autenticado!")
         return h.authenticated({ credentials: {user: "OK"} })

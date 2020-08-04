@@ -11,15 +11,14 @@ async function generateToken(data) {
     })
   })
 }
-async function validateToken(data) {
-  return new Promise((resolve, reject) => {
-    JWT.verify(data, process.env.SECRET_KEY, { algorithms: process.env.JWT_ALGORITHM }, (err, token) => {
-      if (err) {
-        reject(false)
-      }
-      resolve(true)
-    })
+function validateToken(data) {
+  return JWT.verify(data, process.env.SECRET_KEY, { algorithms: process.env.JWT_ALGORITHM }, (err, token) => {
+    console.log("Console log em index > auth > JWTSheme: \n", err, "\n", token)
+    if (err) {
+      return false
+    } else {
+      return true
+    }
   })
 }
-
 module.exports = { generateToken, validateToken }
