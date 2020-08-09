@@ -16,7 +16,6 @@ const init = async () => {
       }
     }
   })
-  // TODO: Adicionar estratégia de proteção de rotas
   await server.register([
     {
       plugin: require('hapi-cors'),
