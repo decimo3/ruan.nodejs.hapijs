@@ -1,28 +1,23 @@
 const JWT = require('jsonwebtoken')
 
-const generateToken = data => (
-    new Promise((resolve, reject) => {
-        const expiration = Math.floor((Date.now() / 1000) + process.env.EXPIRATION)
-        JWT.sign(data, process.env.SECRET_KEY, { algorithm: process.env.JWT_ALGORITHM, expiresIn: expiration }, (err, token) => {
-            if (err) {
-                reject(err)
-            } else {
-                resolve(token)
-            }
-        })
+async function generateToken(data) {
+  return new Promise((resolve, reject) => {
+    const expiration = Math.floor((Date.now() / 1000) + process.env.EXPIRATION)
+    JWT.sign(data, process.env.SECRET_KEY, { algorithm: process.env.JWT_ALGORITHM, expiresIn: expiration }, (err, token) => {
+      if (err) {
+        throw new Error("Erro ao gerar o token!")
+      }
+      resolve(token)
     })
-)
-const validateToken = data => (
-    new Promise((resolve, reject) => {
-        JWT.verify(data, process.env.SECRET_KEY, {algorithms: process.env.JWT_ALGORITHM},(err, token) => {
-            if (err) {
-                reject(err)
-            } else {
-                resolve(token)
-            }
-        })
-    }))
-module.exports = {
-    generateToken,
-    validateToken,
+  })
 }
+function validateToken(data) {
+  return JWT.verify(data, process.env.SECRET_KEY, { algorithms: process.env.JWT_ALGORITHM }, (err, token) => {
+    if (err) {
+      return false
+    } else {
+      return token
+    }
+  })
+}
+module.exports = { generateToken, validateToken }

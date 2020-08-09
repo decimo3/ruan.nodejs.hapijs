@@ -3,7 +3,7 @@ const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
 const routes = require("./routes.index")
 const logs = require('./logs')
-const { auth } = require('./auth.strategy')
+const { authUser } = require('./auth.strategy')
 require('dotenv').config()
 
 const init = async () => {
@@ -16,7 +16,6 @@ const init = async () => {
       }
     }
   })
-  // TODO: Adicionar estratégia de proteção de rotas
   await server.register([
     {
       plugin: require('hapi-cors'),
@@ -27,11 +26,12 @@ const init = async () => {
     Inert,
   ])
   try {
-    server.auth.scheme('custom', auth)
-    server.auth.strategy('jwt', 'custom')
-    server.auth.default('jwt')
-  } catch {
+    server.auth.scheme('custom', authUser)
+    server.auth.strategy('custom', 'custom')
+    server.auth.default('custom')
+  } catch (e) {
     console.error("Erro ao definir uma estratégia")
+    console.log(e)
   }
   server.route(routes)
   await server.start()

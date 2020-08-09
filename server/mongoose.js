@@ -1,13 +1,12 @@
 const bancodados = require('mongoose') // Mongoose main page https://mongoosejs.com/
-bancodados.connect(`mongodb+srv://user:user@ruancamello.lsztj.gcp.mongodb.net/remota?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=>{
-  console.log("Banco de dados conectado!")
-}
-)
-.catch((error) => { 
-  console.error(error)
-  throw new Error("Banco de dados está inacessível!")
-})
+bancodados.connect(`mongodb+srv://user:user@ruancamello.lsztj.gcp.mongodb.net/remota?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Banco de dados conectado!")
+  })
+  .catch((error) => {
+    console.error(error)
+    throw new Error("Banco de dados está inacessível!")
+  })
 
 var estruturaPublicação = new bancodados.Schema({
   nome: String,
@@ -35,4 +34,4 @@ const postagens = bancodados.model('postagems', estruturaPublicação);
 
 const usuario = bancodados.model('usuarios', estruturaUsuário);
 
-module.exports = {postagens, usuario}
+module.exports = { postagens, usuario }
