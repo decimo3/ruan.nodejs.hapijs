@@ -5,6 +5,9 @@ module.exports = [
   {
     method: 'POST',
     path: '/api/v1/publicacoes/',
+    options: {
+      auth: false,
+    },
     handler: handlesPost.listarPublicacoes
   },
   {
