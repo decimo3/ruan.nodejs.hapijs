@@ -9,7 +9,7 @@ const criarUser = Joi.object({
 
 const loginUser = Joi.object({
   email: Joi.string().email().required(),
-  senha: Joi.string().min(8).max(32).required(),
+  senha: Joi.string().required(), // .min(8).max(32)
 })
 
 const criarPost = Joi.object({

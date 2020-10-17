@@ -1,7 +1,7 @@
 const publicacoes = require('./publicacoes')
 
 async function listarPublicacoes(req, res) {
-  return await publicacoes.listarPublicacoes(req.payload.valor)
+  return await publicacoes.listarPublicacoes()
     .then((posts) => {
       return res.response(posts).code(200)
     })

@@ -2,14 +2,16 @@ const usuarios = require('./usuarios')
 const Token = require('./auth.JWT')
 
 async function logarUsuario(req, res) {
-  return await usuarios.logarUsuarios(req.payload.email, req.payload.senha)
+  const user = JSON.parse(req.payload)
+  return await usuarios.logarUsuarios(user.email, user.senha)
     .then((token) => {
-      return res.response({token}).code(200)
+      let Token = JSON.stringify({ token })
+      console.log(Token)
+      return res.response(Token).code(200)
     })
     .catch((err) => {
       // TODO: Gerenciar melhor o erro e passar claramente o erro lançado
-      const errou = "Erro ao logar os usuário!"
-      console.warn(errou, err)
+      console.warn("Erro ao logar os usuário!", err)
       return res.response(JSON.stringify({ err })).code(401)
     })
 }

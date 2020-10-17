@@ -7,9 +7,9 @@ module.exports = [
         path: '/api/v1/login/',
         options: {
             auth: false,
-            validate: {
-                payload: isValidUser.loginUser,
-            },
+        //     validate: {
+        //         payload: isValidUser.loginUser,
+        //     },
         },
         handler: handlesUser.logarUsuario,
     },
