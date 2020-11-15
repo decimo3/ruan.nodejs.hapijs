@@ -8,8 +8,7 @@ require('dotenv').config()
 
 const init = async () => {
   const server = new Hapi.Server({
-    port: 3000,
-    host: 'localhost',
+	  port: 3000,
     routes: {
       files: {
         relativeTo: Path.join(__dirname, 'public')
