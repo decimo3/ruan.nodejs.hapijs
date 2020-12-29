@@ -7,9 +7,9 @@ module.exports = [
         path: '/api/v1/login/',
         options: {
             auth: false,
-        //     validate: {
-        //         payload: isValidUser.loginUser,
-        //     },
+             validate: {
+                 payload: isValidUser.loginUser,
+             },
         },
         handler: handlesUser.logarUsuario,
     },
@@ -18,9 +18,9 @@ module.exports = [
         path: '/api/v1/usuario/',
         options: {
             auth: false,
-            validate: {
-                payload: isValidUser.criarUser,
-            },
+        //    validate: {
+        //        payload: isValidUser.criarUser,
+        //    },
         },
         handler: handlesUser.criarUsuario,
     },

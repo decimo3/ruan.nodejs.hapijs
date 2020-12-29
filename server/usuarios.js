@@ -14,12 +14,12 @@ async function logarUsuarios(email, senha) {
   }
 }
 
-async function criarUsuario(nome, email, senha, telefone) {
+async function criarUsuario(nome, login, email, fone, senha, data) {
   const existEmail = await usuarios.usuario.exists({ email })
   if (existEmail != true) {
     const existTelefone = await usuarios.usuario.exists({ telefone })
     if (existTelefone != true) {
-      return await usuarios.usuario.create({ nome, email, senha, telefone })
+      return await usuarios.usuario.create({ nome, login, email, fone, senha, data })
     } else {
       throw new Error("Já existe usuário com esse telefone!")
     }

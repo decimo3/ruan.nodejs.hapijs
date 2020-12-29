@@ -21,9 +21,11 @@ var estruturaPublicação = new bancodados.Schema({
 
 var estruturaUsuário = new bancodados.Schema({
   nome: String,
-  senha: String,
+  login: String,
   email: String,
-  telefone: Number,
+  fone: Number,
+  senha: String,
+  nasc: Date,
   timestamps: {
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },

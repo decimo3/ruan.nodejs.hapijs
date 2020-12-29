@@ -12,8 +12,10 @@ async function logarUsuario(req, res) {
       const { _id, nome, email, telefone } = user
       try {
         const token = await Token.generateToken({ _id, nome, email, telefone })
+        console.log("Usuário logado com sucesso!")
         return res.response({ token }).code(200)
       } catch (err) {
+        console.log("Erro ao gerar o Token, tente logar novamente")
         return res.response("Erro ao gerar o Token, tente logar novamente").code(500)
       }
     })
@@ -25,11 +27,13 @@ async function logarUsuario(req, res) {
 }
 
 async function criarUsuario(req, res) {
-  return await usuarios.criarUsuario(req.payload.nome, req.payload.email, req.payload.senha, req.payload.telefone)
+  console.log(req.payload)
+  return await usuarios.criarUsuario(req.payload.nome, req.payload.login, req.payload.email, req.payload.fone, req.payload.senha, req.payload.data)
     .then((user) => {
       const {nome, email, telefone} = user
-      Token.generateToken({nome, email, telefone})
+       return Token.generateToken({nome, email, telefone})
         .then((token)=>{
+          console.log("Usuário cadastrado com sucesso!")
           return res.response(token).code(201)
         })
         .catch((err)=>{
