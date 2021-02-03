@@ -17,7 +17,7 @@ async function logarUsuarios(email, senha) {
 async function criarUsuario(nome, login, email, fone, senha, data) {
   const existEmail = await usuarios.usuario.exists({ email })
   if (existEmail != true) {
-    const existTelefone = await usuarios.usuario.exists({ telefone })
+    const existTelefone = await usuarios.usuario.exists({ telefone: fone })
     if (existTelefone != true) {
       return await usuarios.usuario.create({ nome, login, email, fone, senha, data })
     } else {
