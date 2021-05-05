@@ -4,7 +4,7 @@
   "description": "Minha API HapiJS para aprendizado",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon server"
+    "start": "npm install && nodemon server"
   },
   "repository": {
     "type": "git",
